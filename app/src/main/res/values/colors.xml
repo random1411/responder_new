@@ -35,4 +35,9 @@
     <color name="secondary_dark">#FFA000</color>
     <color name="secondary_light">#FFECB3</color>
 
+    <!-- Text colors -->
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
+    <color name="loginBackground">#F5F5F5</color>
+
 </resources>

@@ -1,7 +1,6 @@
 package com.rescuereach.responder;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,10 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
         progressBar = findViewById(R.id.progressBar);
 
-        // Set up dropdown menu for selecting states
         setupStateDropdown();
 
-        // Set click listeners
         loginButton.setOnClickListener(v -> loginUser());
         forgotPasswordButton.setOnClickListener(v -> openEmailApp());
     }
@@ -136,14 +133,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void openEmailApp() {
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        emailIntent.setData(Uri.parse("mailto:")); // Only email apps are shown
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("message/rfc822");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"admin_rescuereach@gmail.com"});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Forgot Password Request");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Hello, I forgot my password. Please assist.");
 
         try {
-            // Show a chooser dialog to select the email app
             startActivity(Intent.createChooser(emailIntent, "Choose an email app"));
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(this, "No email apps available", Toast.LENGTH_SHORT).show();
