@@ -44,8 +44,7 @@ public class DashboardActivity extends AppCompatActivity {
         // Setup DrawerLayout and NavigationView
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.nav_view);
-        toggle = new ActionBarDrawerToggle(
-                this,
+        toggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
                 R.string.open,
                 R.string.close
