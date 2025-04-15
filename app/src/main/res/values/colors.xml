@@ -10,4 +10,29 @@
     <color name="colorPrimaryDark">#3700B3</color> <!-- Darker shade of primary color -->
     <color name="colorAccent">#03DAC5</color> <!-- Accent color -->
 
+
+    <color name="primary">#FF2D65B5</color>
+    <color name="primary_dark">#FF1E4B8F</color>
+    <color name="primary_light">#FF5B8AD1</color>
+    <color name="accent">#FFFF5722</color>
+    <color name="status_active">#FF4CAF50</color>
+    <color name="status_inactive">#FFE53935</color>
+
+    <!-- Light Theme Colors -->
+    <color name="background_light">#FFFFFFFF</color>
+    <color name="surface_light">#FFF5F5F5</color>
+    <color name="text_primary_light">#DE000000</color>
+    <color name="text_secondary_light">#99000000</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="background_dark">#FF121212</color>
+    <color name="surface_dark">#FF1E1E1E</color>
+    <color name="text_primary_dark">#DEFFFFFF</color>
+    <color name="text_secondary_dark">#99FFFFFF</color>
+
+    <!-- Secondary colors -->
+    <color name="secondary">#FFC107</color>
+    <color name="secondary_dark">#FFA000</color>
+    <color name="secondary_light">#FFECB3</color>
+
 </resources>

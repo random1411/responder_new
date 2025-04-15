@@ -17,11 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RescueReach"/>
 
-        <!-- Dashboard Activity -->
-        <activity android:name=".DashboardActivity" />
+        <!-- Other activities -->
 
-        <!-- Responder Main Activity -->
-        <activity android:name=".ResponderMainActivity" />
+
     </application>
 </manifest>

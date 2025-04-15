@@ -48,7 +48,7 @@
         <item>Jammu and Kashmir</item>
     </string-array>
     <string name="profile_image">Profile Image</string> <!-- Description for profile image -->
-    <string name="open">Open</string> <!-- Add this -->
-    <string name="close">Close</string> <!-- Add this -->
+    <string name="open">Open Navigation Drawer</string>
+    <string name="close">Close Navigation Drawer</string>
 
 </resources>
