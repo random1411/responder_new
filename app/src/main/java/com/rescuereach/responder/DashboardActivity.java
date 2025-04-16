@@ -1,10 +1,7 @@
 package com.rescuereach.responder;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,17 +14,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import android.view.MenuItem;
 
 public class DashboardActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private ActionBarDrawerToggle toggle;
     private Button btnSetActive, btnSetInactive;
     private TextView roleTextView;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private String role;
+    private NavigationDrawerHandler navigationDrawerHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,40 +40,37 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Setup DrawerLayout and NavigationView
         drawerLayout = findViewById(R.id.drawerLayout);
-        navigationView = findViewById(R.id.nav_view);
-        toggle = new ActionBarDrawerToggle(this,
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Setup ActionBarDrawerToggle
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,
                 drawerLayout,
                 R.string.open,
                 R.string.close
         );
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Setup Navigation Item Clicks
-        navigationView.setNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                Toast.makeText(DashboardActivity.this, "Home Selected", Toast.LENGTH_SHORT).show();
-            } else if (itemId == R.id.nav_logout) {
-                logoutUser();
-            }
-            drawerLayout.closeDrawers();
-            return true;
-        });
+        // Initialize Navigation Drawer Handler
+        navigationDrawerHandler = new NavigationDrawerHandler(this, drawerLayout, navigationView, toggle, auth);
 
-        // Setup Buttons
+        // Initialize views
+        roleTextView = findViewById(R.id.roleTextView);
         btnSetActive = findViewById(R.id.btnSetActive);
         btnSetInactive = findViewById(R.id.btnSetInactive);
-        roleTextView = findViewById(R.id.roleTextView);
 
         // Display role in the UI
         roleTextView.setText("Role: " + role);
 
+        // Setup button click listeners
         btnSetActive.setOnClickListener(v -> updateUserStatus("active"));
         btnSetInactive.setOnClickListener(v -> updateUserStatus("inactive"));
 
         fetchResponderInfo();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return navigationDrawerHandler.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     private void fetchResponderInfo() {
@@ -109,10 +103,8 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-    private void logoutUser() {
-        auth.signOut();
-        Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+    @Override
+    public void onBackPressed() {
+        navigationDrawerHandler.handleBackPress();
     }
 }

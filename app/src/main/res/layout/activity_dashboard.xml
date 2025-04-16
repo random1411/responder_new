@@ -6,90 +6,62 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/loginBackground"
+    android:background="@color/white"
     tools:context=".DashboardActivity">
 
     <!-- Main Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <!-- Center Content Container -->
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Empty State Image -->
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/empty_state"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="Empty State"/>
+
+        <!-- Role Display -->
+        <TextView
+            android:id="@+id/roleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Role: Unknown"
+            android:textSize="20sp"
+            android:textColor="@color/textPrimary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="48dp"/>
+
+        <!-- Buttons Container -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:padding="16dp">
 
-            <!-- Role Display Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetActive"
+                android:layout_width="250dp"
+                android:layout_height="56dp"
+                android:text="Set Active"
+                app:backgroundTint="@color/green"
+                android:textColor="@android:color/white"
+                app:cornerRadius="28dp"
+                android:layout_marginBottom="16dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_badge"
-                        app:tint="@color/colorPrimary"
-                        android:layout_marginEnd="8dp"/>
-
-                    <TextView
-                        android:id="@+id/roleTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Role: Unknown"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/textPrimary"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Buttons Container Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="24dp">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnSetActive"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:text="Set Active"
-                        android:textSize="16sp"
-                        app:cornerRadius="8dp"
-                        android:backgroundTint="@color/green"
-                        android:layout_marginBottom="16dp"/>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnSetInactive"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:text="Set Inactive"
-                        android:textSize="16sp"
-                        app:cornerRadius="8dp"
-                        android:backgroundTint="@color/red"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetInactive"
+                android:layout_width="250dp"
+                android:layout_height="56dp"
+                android:text="Set Inactive"
+                app:backgroundTint="@color/red"
+                android:textColor="@android:color/white"
+                app:cornerRadius="28dp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -99,7 +71,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"/>
+        android:background="@color/white"
+        app:itemTextColor="@color/textPrimary"
+        app:itemIconTint="@color/colorPrimary"
+        app:menu="@menu/drawer_menu"
+        app:headerLayout="@layout/nav_header"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
